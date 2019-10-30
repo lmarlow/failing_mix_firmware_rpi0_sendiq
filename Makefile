@@ -64,7 +64,6 @@ install: $(PREFIX)/sendiq
 
 $(PREFIX)/sendiq: $(PREFIX) $(SRC_TOP)/sendiq.cpp $(BUILD)/lib/librpitx.a
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c $(SRC_TOP)/sendiq.cpp -lrpitx -L$(BUILD)/lib -I$(BUILD)/include -o $(PREFIX)/sendiq
-	chmod +x $(PREFIX)/sendiq
 
 $(BUILD)/lib/librpitx.a: $(BUILD) $(SRC_TOP)/.patched
 	$(MAKE_ENV) $(MAKE) $(MAKE_OPTS) -C $(LIBRPITX_SRC)/src

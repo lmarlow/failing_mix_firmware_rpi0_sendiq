@@ -10,11 +10,14 @@ defmodule Rpi0Sendiq.MixProject do
       app: @app,
       version: @version,
       elixir: "~> 1.9",
+      compilers: [:elixir_make] ++ Mix.compilers,
       archives: [nerves_bootstrap: "~> 1.6"],
       start_permanent: Mix.env() == :prod,
       build_embedded: true,
       aliases: [loadconfig: [&bootstrap/1]],
       deps: deps(),
+      make_clean: ["clean"],
+      make_targets: ["all"],
       releases: [{@app, release()}],
       preferred_cli_target: [run: :host, test: :host]
     ]
@@ -49,6 +52,8 @@ defmodule Rpi0Sendiq.MixProject do
 
       # Dependencies for specific targets
       {:nerves_system_rpi0, "~> 1.8", runtime: false, targets: :rpi0},
+
+      {:elixir_make, "~> 0.6", runtime: false},
     ]
   end
 
